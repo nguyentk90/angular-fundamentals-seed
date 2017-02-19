@@ -1,56 +1,58 @@
 import { Component } from '@angular/core';
 
+interface Passenger {
+  id: number,
+  fullname: string,
+  checkedIn: boolean
+}
+
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <h1 [innerHTML]="title"></h1>
-      <div>
-        {{numberOne + numberTwo}}
-      </div>
-      <div>
-        {{isHappy ? ':)' : '('}}
-      </div>
-      <input type="text"
-        [ngModel]="name"
-        (ngModelChange)="handleChange($event)"
-        (blur)="handleBlur($event)"
-        (input)="handleInput($event)"
-         />
-      <div>{{name}}</div>
-      <button (click)="handleClick($event)">Change name</button>
+      
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index;" [style.backgroundColor]="'red'">
+        <span class="status" 
+        [ngClass]="{ 'checked-in': passenger.checkedIn,
+    'checked-out': !passenger.checkedOut  
+     }"
+        ></span>
+          {{ i }}: {{ passenger.fullname }}
+        </li>
+      </ul>
+      <button (click)="update()">update</button>
+
+      
     </div>
   `
 })
 export class AppComponent {
-  title: string;
-  isHappy = true;
-  numberOne: number = 1;
-  numberTwo: number = 2;
-  name: string = 'Nguyen';
-
-  constructor() {
-    this.title = 'Ultimate Angular'
+  update() {
+    this.passengers[0].checkedIn = !this.passengers[0].checkedIn;
   }
 
-  handleChange(value: string) {
-    console.log('Handle change...');
-    this.name = value;
-  }
-
-  handleClick() {
-    console.log('Handle click...');
-    this.name = 'Tran';
-  }
-
-  handleBlur(event: any) {
-    this.name = event.target.value; 
-    console.log('Handle blur...');
-  }
-
-  handleInput(event: any) {
-    console.log('Handle input...');
-    this.name = event.target.value;
-  }
+  passengers: Passenger[] = [{
+    id: 1,
+    fullname: 'Stephen',
+    checkedIn: true
+  }, {
+    id: 2,
+    fullname: 'Rose',
+    checkedIn: false
+  }, {
+    id: 3,
+    fullname: 'James',
+    checkedIn: true
+  }, {
+    id: 4,
+    fullname: 'Louise',
+    checkedIn: true
+  }, {
+    id: 5,
+    fullname: 'Tina',
+    checkedIn: false
+  }];
 }
