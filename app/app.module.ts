@@ -1,5 +1,4 @@
-import { StepComponent } from './wizard/step.component';
-import { WizardComponent } from './wizard/wizard.component';
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,12 +10,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    PassengerDashboardModule
   ],
   declarations:  [
-    AppComponent,
-    WizardComponent,
-    StepComponent
+    AppComponent   
   ],
   bootstrap: [AppComponent]
 })
