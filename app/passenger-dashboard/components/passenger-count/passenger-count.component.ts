@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
     styleUrls: [],
     template: `
         <div>
-           Total checked in: {{ checkedInCount() }}/{{ items.length }}
+           Total checked in: {{ checkedInCount() }}/{{ items?.length }}
         </div>
     `
 })
